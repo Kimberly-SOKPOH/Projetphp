@@ -1,4 +1,4 @@
-<?php require "../connexion-php/database.php" ;
+<?php require "database.php" ;
 
 $statement = $pdo->prepare('SELECT * FROM inscrits');
 $statement->execute();
