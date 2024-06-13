@@ -1,0 +1,4 @@
+_ client : id .......  table
+_ categorie: id, libelle  table
+_ article: id , intitulé, qte, *categorie
+_ achats: id, *article, qte_achat, date,  *client

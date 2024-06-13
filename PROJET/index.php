@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,17 +17,11 @@
                         <h2 class=" font-normal text-4xl  leading-15 text-white">MyBlog</h2>
                     </div>
                     <ul class=" md:flex  space-x-2">
-                        <button class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow " id="connection" type="button">Se connecter</button>
-                        <button class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow " id="inscription" type="button">S'inscrire</button>
+                           <a href="formConnection.php"><button class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow "  type="button">Se connecter</button></a>
+                           <a href="formInscription.php"> <button class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow "  type="button">S'inscrire</button></a> 
                     </ul>
+                    
                 </nav>  
             </div>
-    </header>
-    <!-- Affichage du formulaire d'inscription ou de connection -->
-    <div id="formplace"></div>
-
-
+    </header>   
     
-    <script src= "script.js"></script>
-</body>
-</html>

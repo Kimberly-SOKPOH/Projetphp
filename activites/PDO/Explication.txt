@@ -1,0 +1,16 @@
+<!-- fonctionnement  -->
+
+On veut publier des posts sur une page html. Les posts doivent pouvoir etre stocker dans une base de donnée connectés par PHP.
+Tous les posts s'affichent sur la premiere page du sites. 
+Lorsqu'on clique sur le titre d'un post, une page s'ouvre affichant les details du post.
+TAF
+Faire les connection PHP MySQL
+creer les différents fichiers nécessaires
+
+
+blog gestion des prix
+une nouvelle page selon la requete qu'on veut faire : delete , update, select.....
+
+
+
+
