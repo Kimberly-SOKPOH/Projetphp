@@ -1,12 +1,25 @@
 <?php
 session_start();
-$nom = $_SESSION['nom'];
 require "database.php" ;
+if (!isset($_SESSION['nom'])) {
+    header("Location: formConnection.php");
+    exit;
+}else{
 
-$statement = $pdo->prepare('SELECT * FROM inscrits,posts WHERE inscrits.nom = posts.nom ORDER BY posts.id');
-$statement->execute();
-$posts = $statement->fetch(PDO::FETCH_ASSOC);
+    // les profiles
 
+//  if($_SESSION['imgNewprofile']){
+//     $img = $_SESSION['imgNewprofile'];
+//  } 
+
+$nom = $_SESSION['nom'];
+
+$statement = $pdo->prepare('SELECT id,titre,contenu FROM inscrits,posts WHERE inscrits.nom = posts.nom AND posts.nom = :nom ORDER BY posts.id');
+$statement->execute([
+    ':nom'=> $nom
+]);
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($posts)
 ?>;
 
 <!DOCTYPE html>
@@ -27,25 +40,28 @@ $posts = $statement->fetch(PDO::FETCH_ASSOC);
                         <h2 class=" font-normal text-4xl  leading-15 text-white">MyBlog</h2>
                     </div>
                     <ul class=" md:flex  space-x-2">
-                           <a href="profile.php"><img src="img.jpeg" class = " border-white  px-3  py-2 text-base w-4 h-4 font-normal rounded-full shadow "></a>
-                           <a href="deconnection.php"> <button class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow "  type="button">Se deconnecter</button></a> 
+                           <a class = "px-3 rounded-full flex " href="profile.php"><img class="rounded-full  w-10 h-10" src="<?php echo $img ?>" alt="<?php echo $_SESSION['nom'][0] ?>"><p class="flex-center p-2">My profile</p></a>
+                           <form action="deconnection.php" method="POST" >
+                                <input type="submit" value="Se déconnecter" class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow ">
+                            </form>
                     </ul>
                     
                 </nav>  
             </div>
     </header>  
 
-    <h1 class=" text-center font-bold text-cyan-600 text-2xl my-6 " > Bienvenue <?php echo $nom ?></h1>
+    <h1 class=" text-center  text-cyan-600 text-2xl my-6 " > Bienvenue <?php echo $nom ?></h1>
 
-    <!-- <?php foreach( $posts as $post) : ?> -->
-        <div class=" bg-blue-100 w-3/4 h-20  shadow-lg rounded-lg mx-auto my-3 " >
-            <h1 class=""><?php echo $post["titre"] ?></h1>
-            <p><?php echo $post['contenu'] ?></p>
-        </div>
-    <!-- <?php endforeach  ?> -->
+     <?php foreach( $posts as $post) : ?> 
+        <a href="showPost.php?id=<?php echo $post["id"]?>">
+            <div class=" bg-blue-100 w-3/4 h-20 shadow-lg rounded-lg mx-auto my-3 " >
+               <h1 class="pt-3 font-bold pl-3 "><?php echo $post["titre"] ?></h1>
+               <p class="  font-bold pl-3 "><?php echo $post["contenu"] ?></p>
+            </div>
+        </a>
+     <?php endforeach  ?> 
+     <a href="craetePost.php" class = " bg-slate-800 text-white rounded-full flex align-center justify-self-center justify-center h-14 w-14 mx-auto mt-6 px-auto pt-3 text-xxl font-bold shadow-md">+</a>
 
-    <footer class=" flex justify-self-end ">
-        <a href="craetePost.php"></a><button class = " bg-red-400 border rounded-full border-white flex text-center h-14 w-14 ml-auto mr-3 mt-96 mb-0 text-base font-bold shadow " > <strong>+</strong></button>
-    </footer>
 
+<?php }?>
    

@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$_SESSION['inscriptionError'] = '';
  require "database.php";
 
 if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST['inscription'])){
@@ -23,7 +24,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST['inscription'])){
     // message d'avertissement en cas de même nom ou email
     ;
     if($user["nom"] == $nom || $user["email"] == $email  ){ 
-         echo '<script>alert("nom ou email deja utilisé")</script>';
+         $_SESSION['inscriptionError'] ="nom ou email deja utilisé";
+         header("Location: formInscription.php");
     } else {
         // si le mot de passe et sa confirmation sont conformes 
         if($motDePasse === $comfirmation){

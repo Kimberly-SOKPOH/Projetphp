@@ -1,4 +1,10 @@
 <?php 
+session_start();
+$inscriptionError = '';
+if(isset($_SESSION['inscriptionError'])){
+  $inscriptionError = $_SESSION['inscriptionError'] ;
+}
+
   require "index.php";
 ?>
 
@@ -21,6 +27,7 @@
           <input class=" rounded border mx-5 px-2 h-8 focus:outline-none  border-indigo-600" type="password" name="motDePasse"  placeholder="Mot de passe " id="password" required autocomplete>
           <label class=" font-bold text-slate-600  mx-5 text-base "  for="psw">Confirmation du mot de passe </label>
           <input class=" rounded border mx-5 px-2 h-8 focus:outline-none  border-indigo-600" type="password" name="confirmation" placeholder="..." id="confirmer_password" required autocomplete>
+          <span class=" font-bold mx-5 text-base text-red-600 "><?php echo $inscriptionError?></span>
 
           <button class = " bg-white border-white focus:bg-gray w-52 px-3 mx-auto py-2 text-base font-normal rounded shadow " name="inscription" >Inscription</button>
         </div>
