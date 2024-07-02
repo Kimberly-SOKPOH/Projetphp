@@ -39,9 +39,9 @@ if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST['inscription'])){
                 ':email' => $email, 
                 ':confirmation'=>  $comfirmation,
             ]);
-            echo '<script>alert("inscription réussi")</script>';
+            $_SESSION["nom"] = $_POST['nom'];
             header("Location: affichage-nouveau.php");
-                exit();
+            exit();
         } else {
             echo '<script>alert("mot de passe non confirmé")</script>';
         }

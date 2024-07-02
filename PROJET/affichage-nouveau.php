@@ -40,7 +40,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <h2 class=" font-normal text-4xl  leading-15 text-white">MyBlog</h2>
                     </div>
                     <ul class=" md:flex  space-x-2">
-                           <a class = "px-3 rounded-full flex " href="profile.php"><img class="rounded-full  w-10 h-10" src="<?php echo $img ?>" alt="<?php echo $_SESSION['nom'][0] ?>"><p class="flex-center p-2">My profile</p></a>
                            <form action="deconnection.php" method="POST" >
                                 <input type="submit" value="Se déconnecter" class = " bg-white border-white focus:bg-gray px-3  py-2 text-base font-normal rounded shadow ">
                             </form>
